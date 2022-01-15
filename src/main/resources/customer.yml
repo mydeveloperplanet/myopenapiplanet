@@ -1,0 +1,71 @@
+openapi: "3.0.2"
+info:
+  title: API Customer
+  version: "1.0"
+servers:
+  - url: https://localhost:8080
+tags:
+  - name: Customer
+    description: Customer specific data.
+paths:
+  /customer:
+    post:
+      tags:
+        - Customer
+      summary: Create Customer
+      operationId: createCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/CustomerFullData'
+  /customer/{customerId}:
+    get:
+      tags:
+        - Customer
+      summary: Retrieve Customer
+      operationId: getCustomer
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/CustomerFullData'
+        '404':
+          description: NOT FOUND
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: First name of the customer
+        lastName:
+          type: string
+          description: Last name of the customer
+    CustomerFullData:
+      allOf:
+        - $ref: '#/components/schemas/Customer'
+        - type: object
+          properties:
+            customerId:
+              type: integer
+              description: The ID of the customer
+              format: int64
+      description: Full data of the customer.
