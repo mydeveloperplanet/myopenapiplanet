@@ -81,7 +81,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/customer.yml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/static/customer.yml</inputSpec>
 							<generatorName>spring</generatorName>
 							<packageName>com.mydeveloperplanet.myopenapiplanet</packageName>
 							<apiPackage>com.mydeveloperplanet.myopenapiplanet.api</apiPackage>
